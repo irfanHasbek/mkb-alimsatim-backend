@@ -12,6 +12,10 @@ function Hesap(){
                 res.send({state : false, response : hata});
                 return;
             }
+            if(kullanici == null){
+                res.send({state : false, response : "Kullanici bulunamadi."});
+                return;
+            }
             res.send({state : true, response : kullanici});
         });
     });
