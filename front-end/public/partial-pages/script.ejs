@@ -1,0 +1,83 @@
+<script src="../js/utility-js/jquery-2.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../js/utility-js/bootstrap.min.js" type="text/javascript"></script>
+<!-- InputMask -->
+<script src="../js/utility-js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<script src="../js/utility-js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+<script src="../js/utility-js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+<!-- date-range-picker -->
+<script src="../js/utility-js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="../js/utility-js/AdminLTE/app.js" type="text/javascript"></script>
+<!-- jqoueryForm.js -->
+<script src="../js/utility-js/jquery.form.js" type="text/javascript"></script>
+<!-- alertify.js -->
+<script src="../js/utility-js/alertify.min.js" type="text/javascript"></script>
+<script src="../js/utility-js/lightbox.min.js" type="text/javascript"></script>
+<script src="../js/utility-js/jquery.blockUI.js"></script>
+<!-- Page script -->
+<script type="text/javascript">
+    $(function() {
+        //Datemask dd/mm/yyyy
+        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+        //Datemask2 mm/dd/yyyy
+        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+        //Money Euro
+        $("[data-mask]").inputmask();
+
+        //Date range picker
+        $('#reservation').daterangepicker();
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                        'Last 7 Days': [moment().subtract('days', 6), moment()],
+                        'Last 30 Days': [moment().subtract('days', 29), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                    },
+                    startDate: moment().subtract('days', 29),
+                    endDate: moment()
+                },
+        function(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+        );
+    });
+</script>
+<script>
+
+    $(document).delegate('*[data-toggle="lightbox"]','click', function(){
+
+    event.preventDefault();
+    $(this).ekkoLightbox();
+
+
+    });	
+
+
+
+</script>
+<script>
+    $(document).ready(function(){ 
+        organizeLeftMenu();
+        clickHandlers();
+        formHandlers();
+        otherScripts();
+    });
+    
+    function organizeLeftMenu(){
+        var currentPage = $('#currentPage').text();
+        var pageLink = $('a[href="' + currentPage + '"]'); 
+        var page = pageLink.parent();
+        while(!page.parent().is('section')){
+            page.addClass('active');
+            //console.log('class : ' + page.attr('class'));
+            page = page.parent();
+        }
+    }
+</script>

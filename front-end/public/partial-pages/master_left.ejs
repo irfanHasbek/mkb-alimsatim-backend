@@ -1,0 +1,161 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="left-side sidebar-offcanvas">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <label id="currentPage" style="display:none;"><%=session.currentPage%></label>
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="../img/avatar5.png" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p>Merhaba,  <%=session.kullanici.soyisim%> </p>
+                
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="<%if(session.LeftMenuCategory == 'anasayfa'){%>active<%}%>">
+                <a href="/html/anasayfa_firma">
+                    <i class="fa fa-home"></i> <span>Anasayfa</span>
+                </a>
+            </li>
+            <li class="<%if(session.LeftMenuCategory == 'firma'){%>active<%}%>">
+                <a href="/html/firma_tanimi">
+                    <i class="fa fa-windows"></i> <span>Firma Tanimi</span>
+                </a>
+            </li>
+            <li class="treeview <%if(session.LeftMenuCategory == 'kullanicilar'){%>active<%}%>">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Kullanıcılar</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/html/rol_tanimi"><i class="fa fa-angle-double-right"></i> Rol Tanımi</a></li>
+                    <li><a href="/html/gorev_tanimi"><i class="fa fa-angle-double-right"></i> Görev Tanımi</a></li>
+                    <li><a href="/html/kullanici_tanimi"><i class="fa fa-angle-double-right"></i> Kullanıcı Tanımi</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i> Kullanıcı İzinleri</a></li>
+                </ul>
+            </li>
+            
+            <li class="treeview <%if(session.LeftMenuCategory == 'mobil'){%> active <%}%>">
+                <a href="#">
+                    <i class="fa fa-mobile"></i>
+                    <span>Mobil Uygulama</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview <%if(session.pageLabel == 'dokumanlar'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>Dökümanlar</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/dokuman_turu_ekle"><i class="fa fa-angle-double-right"></i> Döküman Türü Ekle</a></li>
+                            <li><a href="/html/dokuman_ekle"><i class="fa fa-angle-double-right"></i> Döküman Ekle</a></li>
+                            <li><a href="/html/dokuman_listele"><i class="fa fa-angle-double-right"></i> Döküman Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'urunler'){%>active<%}%>">
+                        <a href="#">
+                            <i class="fa fa-tags"></i>
+                            <span>Ürünler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/urun_grubu_ekle"><i class="fa fa-angle-double-right"></i> Ürün Grubu Ekle</a></li>
+                            <li><a href="/html/urun_ekle"><i class="fa fa-angle-double-right"></i> Ürün Ekle</a></li>
+                            <li><a href="/html/urun_listele"><i class="fa fa-angle-double-right"></i> Ürünler Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'egitim_takvimi'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-calendar-o"></i>
+                            <span>Eğitim Takvimi</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/egitim_takvimi_ekle"><i class="fa fa-angle-double-right"></i> Eğitim Takvimi Ekle</a></li>
+                            <li><a href="/html/egitim_takvimi_listele"><i class="fa fa-angle-double-right"></i> Eğitim Takvimi Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'fiyat'){%>active<%}%>">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i>
+                            <span>Fiyat</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                           <li><a href="/html/fiyat_grubu_ekle"><i class="fa fa-angle-double-right"></i> Fiyat Grubu Ekle</a></li>
+                            <li><a href="/html/fiyat_ekle"><i class="fa fa-angle-double-right"></i> Fiyat Ekle</a></li>
+                            <li><a href="/html/fiyat_listele"><i class="fa fa-angle-double-right"></i> Fiyat Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'referans'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-star-o"></i>
+                            <span>Referanslar</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/referans_ekle"><i class="fa fa-angle-double-right"></i> Referans Ekle</a></li>
+                            <li><a href="/html/referans_listele"><i class="fa fa-angle-double-right"></i> Referans Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'yapilmis_egitim'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-suitcase"></i>
+                            <span>Yapılmış Eğitimler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/yapilmis_egitim_ekle"><i class="fa fa-angle-double-right"></i> Yapılmış Eğitim Ekle</a></li>
+                            <li><a href="/html/yapilmis_egitim_listele"><i class="fa fa-angle-double-right"></i> Yapılmış Eğitim Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'haberler'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span>Haberler</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/haber_ekle"><i class="fa fa-angle-double-right"></i> Haber Ekle</a></li>
+                            <li><a href="/html/haber_listele"><i class="fa fa-angle-double-right"></i> Haber Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'iletisim'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-phone"></i>
+                            <span>İletişim</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/iletisim_ekle"><i class="fa fa-angle-double-right"></i> İletişim Ekle</a></li>
+                            <li><a href="/html/iletisim_listele"><i class="fa fa-angle-double-right"></i> İletişim Listele</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview <%if(session.pageLabel == 'video'){%> active <%}%>">
+                        <a href="#">
+                            <i class="fa fa-youtube-play"></i>
+                            <span>Video Yönetim</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/html/video_tanimi"><i class="fa fa-angle-double-right"></i> Video Tanimi</a></li>
+                        </ul>
+                    </li>
+                    <li class=" <%if(session.pageLabel == 'versiyon'){%> active <%}%>">
+                        <a href="/html/versiyon_guncelle">
+                            <i class="fa fa-github-alt"></i> <span>Versiyon Güncelle</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
