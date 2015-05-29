@@ -43,9 +43,15 @@ mongoose.connect(config.dbpath, function(err){
     
     app.all('/*', function(req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
+<<<<<<< HEAD
         res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
         res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
         next();
+=======
+        res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
+        console.log('origin-policy');
+	next();
+>>>>>>> efe30227412a6bc14cfc160cdc96ea8fb73ac46d
     });
     
     app.use(function(req, res, next){
