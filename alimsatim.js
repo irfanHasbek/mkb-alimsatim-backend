@@ -5,6 +5,7 @@ var config = require('./config/development');
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var CRUDRouter = require('./back-end/Routers/Router');
+var KullaniciModeli = require('./back-end/Modeller/KullaniciModeli');
 
 function createCrudRouter(app, modelPath, url){
     var Model = require(modelPath);
@@ -49,6 +50,29 @@ mongoose.connect(config.dbpath, function(err){
         next();
     });
     
+    app.all('/*', function(req, res, next) {
+        console.log(req.originalUrl);
+        if(req.originalUrl == "/hesap/mobil_giris" || req.originalUrl == "/hesap/mobil_kayit"){
+            next();
+        }else{
+            KullaniciModeli.findOne({apiKey : req.body.apiKey},'apiKey', function(hata, kullanici){
+                console.log('Kullanici : api key : ' + kullanici);
+                if(hata){
+                    console.log("Db hatasi : " + hata);
+                    res.send({status : false, response : hata});
+                    return;
+                }
+                if(kullanici == null){
+                    console.log("Api key hatali...");
+                    res.send({status : false, response : "Api key hatali..."});
+                    return;
+                }
+                console.log('api key dogrulama basarili');
+                next();
+            });      
+        }
+    });
+    
     app.use(function(req, res, next){
         if(true){
             console.log('sessionCheck is true');
@@ -66,6 +90,8 @@ mongoose.connect(config.dbpath, function(err){
     
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
+    //Bildirim crud operasyon
+    createCrudRouter(app, './back-end/Modeller/BildirimModeli', '/bildirim');
     
     if (!module.parent) {
         app.listen(config.port);

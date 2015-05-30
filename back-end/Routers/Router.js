@@ -40,7 +40,7 @@ function CRUD(model){
         });
     });
     //coklu resim iceren objeler
-    router.post('/cokluekle', function(req, res){  
+    router.post('/ekle_fotografli', function(req, res){  
         var temp = req.body;
         temp.fotograflar = JSON.parse(req.body.fotograflar);
         var modelObject = new model(temp);
@@ -135,25 +135,6 @@ function CRUD(model){
             else {
                 res.send({state : true, data : etkilenenSatir});
             }
-        });
-    });
-    
-    router.post('/guncelle', function(req, res) {
-        VersionModeli.findOne({firmaKodu : req.session.kullanici.firmaKodu}, function(dbVersionHatasi, bulunan){
-            if(dbVersionHatasi){
-                console.log(dbVersionHatasi);
-                res.send({state : false, data : dbVersionHatasi});
-                return;
-            }
-            var version = parseFloat(bulunan.mobilVersion);
-            bulunan.mobilVersion = ++version;
-            bulunan.save(function(dbHatasiKayit, kaydedilen){
-                if(dbHatasiKayit){
-                    res.send({state : false, data : dbHatasiKayit});
-                    return;
-                }
-
-            });
         });
     });
     

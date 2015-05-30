@@ -27,7 +27,7 @@ function Yukleme(){
     });
     
     //coklu resim yukleme
-    router.post('/cokluyukle', multer({
+    router.post('/resim_yukle', multer({
         dest: './front-end/public/yuklemeler/medyalar',
         rename: function (fieldname, filename) {
             var hash = crypto.createHash('sha1');
