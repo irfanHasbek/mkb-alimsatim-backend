@@ -50,9 +50,27 @@ mongoose.connect(config.dbpath, function(err){
         next();
     });
     
+    function izinKontrol(url){
+        var izinli = false;
+        var izinliUrlListesi = ["hesap", "onyukleme", "sehir"];
+        var temp = url.split("/");
+        
+        if(temp.length < 3){
+            izinli = false;
+        }
+        for(var i = 0; i < izinliUrlListesi.length; i++){
+            console.log("temp : " + temp[1] + ", url : " + izinliUrlListesi[i]);
+            if(izinliUrlListesi[i] == temp[1]){
+                izinli = true;   
+            }
+        }
+        console.log("Izinli : " + izinli);
+        return izinli;
+    }
+    
     app.all('/*', function(req, res, next) {
         console.log(req.originalUrl);
-        if(req.originalUrl == "/hesap/mobil_giris" || req.originalUrl == "/hesap/mobil_kayit"){
+        if(izinKontrol(req.originalUrl)){
             next();
         }else{
             KullaniciModeli.findOne({apiKey : req.body.apiKey},'apiKey', function(hata, kullanici){
@@ -72,26 +90,20 @@ mongoose.connect(config.dbpath, function(err){
             });      
         }
     });
-    
-    app.use(function(req, res, next){
-        if(true){
-            console.log('sessionCheck is true');
-            next();
-        }else{
-            console.log('sessionCheck is false');
-            res.render('giris');
-        }
-    });
 
     //giris ve cikis
     assignRouter(app, './back-end/Routers/HesapRouter', '/hesap');
     //yukleme router
     assignRouter(app, './back-end/Routers/YuklemeRouter', '/yukleme');
+    //onyukleme router
+    assignRouter(app, './back-end/Routers/OnYuklemeRouter', '/onyukleme');
     
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
     //Bildirim crud operasyon
     createCrudRouter(app, './back-end/Modeller/BildirimModeli', '/bildirim');
+    //Sehir crud operasyon
+    createCrudRouter(app, './back-end/Modeller/SehirModeli', '/sehir');
     
     if (!module.parent) {
         app.listen(config.port);
