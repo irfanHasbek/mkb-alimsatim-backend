@@ -37,7 +37,7 @@ function Yukleme(){
             return hash.read();
         },
         onFileUploadComplete: function (file) {
-            //console.log(file.fieldname + ' uploaded to  ' + file.path);
+            console.log(file.fieldname + ' uploaded to  ' + file.path);
         },
         onError: function(error, next) {
             console.log("Error occurred while uploading the file!!");

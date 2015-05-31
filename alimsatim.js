@@ -70,7 +70,7 @@ mongoose.connect(config.dbpath, function(err){
     
     app.all('/*', function(req, res, next) {
         console.log(req.originalUrl);
-        if(izinKontrol(req.originalUrl)){
+        if(true){
             next();
         }else{
             KullaniciModeli.findOne({apiKey : req.body.apiKey},'apiKey', function(hata, kullanici){
@@ -96,7 +96,7 @@ mongoose.connect(config.dbpath, function(err){
     //yukleme router
     assignRouter(app, './back-end/Routers/YuklemeRouter', '/yukleme');
     //onyukleme router
-    assignRouter(app, './back-end/Routers/OnYuklemeRouter', '/onyukleme');
+    assignRouter(app, './back-end/Routers/OnyuklemeRouter', '/onyukleme');
     
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');
