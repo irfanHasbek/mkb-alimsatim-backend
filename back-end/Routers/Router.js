@@ -16,7 +16,9 @@ function CRUD(model){
     
     router.post('/ara', function(req, res) {
         var aramaKriteri = req.body.kriter;
-        model.find(aramaKriteri, req.body.istenen, function(dbHatasi, listelenen) {
+        var istenen = req.body.istenen;
+        console.log("kriter : " + JSON.stringify(aramaKriteri) + " ,istenen : " + JSON.stringify(istenen));
+        model.find(aramaKriteri, istenen, function(dbHatasi, listelenen) {
             if(dbHatasi) {
                 res.send({state : false, data : dbHatasi});
                 return;
