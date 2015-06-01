@@ -44,9 +44,9 @@ function Yukleme(){
         }
     }),function(req, res){
         //req.protocol
-        var imagePath = req['files'];
+        var imagePath = req['files'].resim.path.replace('front-end/public',config.host);
         console.log(JSON.stringify(imagePath));
-        res.send({state : true, fotografListesi : req['files'], host : config.host});
+        res.send({state : true, fotografListesi : imagePath, host : config.host});
     });
     
     return router;
