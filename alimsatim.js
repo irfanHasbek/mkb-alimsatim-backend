@@ -97,6 +97,8 @@ mongoose.connect(config.dbpath, function(err){
     assignRouter(app, './back-end/Routers/YuklemeRouter', '/yukleme');
     //onyukleme router
     assignRouter(app, './back-end/Routers/OnyuklemeRouter', '/onyukleme');
+    //diger
+    assignRouter(app, './back-end/Routers/DigerRouter', '/diger');
     
     //Kullanici crud operasyon
     createCrudRouter(app, './back-end/Modeller/KullaniciModeli', '/kullanici');

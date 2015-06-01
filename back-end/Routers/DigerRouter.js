@@ -1,9 +1,24 @@
 var express = require('express');
 var nodemailer = require('nodemailer');
-
+var fs = require('fs');
+var path = require('path');
+var config = require('../../config/development.js')
 function Diger(){
-    /*var router = express.Router();
-    router.post("/mailgonder", function(req, res){
+    var router = express.Router();
+    
+    router.post("/dosya_sil", function(req, res){
+        var dosya = __dirname + "/../../front-end/public" +  req.body.dosya_yolu.replace(config.host, "");
+        console.log(dosya);
+       fs.unlink(dosya, function (err) {
+          if (err){ 
+              res.send({state : false, response : err});
+              return;
+          }
+           console.log('successfully deleted ' + req.body.dosya_yolu);
+           res.send({state : true, response : "Dosya silindi."});
+       });    
+    });
+    /*router.post("/mailgonder", function(req, res){
         console.log(JSON.stringify(req.body));
         FirmaModeli.findOne({firmaKodu : req.body.firmaKodu}, function(hata, data){
             if(hata){
@@ -47,8 +62,8 @@ function Diger(){
             });
         }); 
     });
-    
+      */
     return router;
-    */
+  
 }
 module.exports = Diger;
