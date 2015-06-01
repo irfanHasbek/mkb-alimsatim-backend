@@ -106,6 +106,8 @@ mongoose.connect(config.dbpath, function(err){
     createCrudRouter(app, './back-end/Modeller/BildirimModeli', '/bildirim');
     //Sehir crud operasyon
     createCrudRouter(app, './back-end/Modeller/SehirModeli', '/sehir');
+    //Ilan crud operasyon
+    createCrudRouter(app, './back-end/Modeller/IlanModeli', '/ilan');
     
     if (!module.parent) {
         app.listen(config.port);
