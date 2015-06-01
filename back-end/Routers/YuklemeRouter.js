@@ -44,7 +44,7 @@ function Yukleme(){
         }
     }),function(req, res){
         //req.protocol
-        var imagePath : req['files'];
+        var imagePath = req['files'];
         console.log(JSON.stringify(imagePath));
         res.send({state : true, fotografListesi : req['files'], host : config.host});
     });
