@@ -9,7 +9,11 @@ var IlanModeli = new mongoose.Schema({
     fiyat : String,
     fotografListesi : [{dosyaAdi : String, dosyaYolu : String}],
     kategori : String,
-    sahibiId : String
+    sahibiId : String,
+    tarih : {
+	type : Date,
+        default : Date.now
+    }
 });
 
 module.exports = mongoose.model('ilanlar', IlanModeli);
