@@ -13,6 +13,14 @@ var IlanModeli = new mongoose.Schema({
     tarih : {
 	type : Date,
         default : Date.now
+    },
+    begeniSayisi : {
+        type : Number,
+        default : 0
+    },
+    yorumSayisi : {
+        type : Number,
+        default : 0
     }
 });
 
