@@ -140,7 +140,7 @@ function CRUD(model){
         });
     });
     
-    router.post('/getir', function(req, res) {
+    router.post('/sayi', function(req, res) {
         //console.log(JSON.stringify(req.body));
         model.count(req.body, function(dbHatasi, sayi) {
             if(dbHatasi) {
