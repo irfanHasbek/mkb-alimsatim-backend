@@ -140,6 +140,19 @@ function CRUD(model){
         });
     });
     
+    router.post('/getir', function(req, res) {
+        //console.log(JSON.stringify(req.body));
+        model.count(req.body, function(dbHatasi, sayi) {
+            if(dbHatasi) {
+                res.send({state : false, data : dbHatasi});
+                return;
+            }
+            else {
+                res.send({state : true, data : sayi});
+            }
+        });
+    });
+    
     return router;
 }
 module.exports = CRUD;
